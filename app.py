@@ -20,7 +20,7 @@ def make_response(status, detail, data, base_response=config.Response.BASE_RESPO
 
 @app.route(config.Setup.version_no_route + '/map_image', methods=["GET"])
 def get_map_image():
-    return send_file(VERSON_NO_ROUTE, mimetype='image/' + config.Setup.map_image_fomat)
+    return send_file(config.Setup.map_image_route, mimetype='image/' + config.Setup.map_image_fomat)
 
 @app.route(VERSON_NO_ROUTE + '/user/robot/map/location/', methods=["GET"])
 def get_robots_coordinate():
@@ -69,7 +69,7 @@ def get_robots_battery():
 
 
 @app.route(VERSON_NO_ROUTE + '/user/robot/power/', methods=['PUT'])
-class control_robot_power()
+class control_robot_power():
     def put(self):
         return make_response(200, "OK")
 
