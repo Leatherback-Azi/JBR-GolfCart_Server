@@ -4,7 +4,7 @@ from flask import Flask, send_file, request
 from flask_restx import Api, Resource
 
 app = Flask(__name__)
-VERSON_NO_ROUTE = config.Setup.version_no_route
+VERSION_NO_ROUTE = config.Setup.version_no_route
 
 def make_response(status, detail, data, base_response=config.Response.BASE_RESPONSE):
     try:
@@ -18,11 +18,11 @@ def make_response(status, detail, data, base_response=config.Response.BASE_RESPO
         print("\n=======================================\n")
 
 
-@app.route(config.Setup.version_no_route + '/map_image', methods=["GET"])
+@app.route(VERSION_NO_ROUTE + '/map_image', methods=["GET"])
 def get_map_image():
     return send_file(config.Setup.map_image_route, mimetype='image/' + config.Setup.map_image_fomat)
 
-@app.route(VERSON_NO_ROUTE + '/user/robot/map/location/', methods=["GET"])
+@app.route(VERSION_NO_ROUTE + '/user/robot/map/location/', methods=["GET"])
 def get_robots_coordinate():
     coordinate_curr = {
         "robots": [
@@ -36,7 +36,7 @@ def get_robots_coordinate():
     return make_response(200, "OK", coordinate_curr)
 
 
-@app.route(VERSON_NO_ROUTE + '/user/robot/map/location/destination/', methods=["GET", "PUT"])
+@app.route(VERSION_NO_ROUTE + '/user/robot/map/location/destination/', methods=["GET", "PUT"])
 class robots_destination_coordinate():
     def get(self):
         coordinate_dest = {
@@ -55,7 +55,7 @@ class robots_destination_coordinate():
         return make_response(200, "OK")
 
 
-@app.route(VERSON_NO_ROUTE + '/user/robot/battery/', methods=["GET"])
+@app.route(VERSION_NO_ROUTE + '/user/robot/battery/', methods=["GET"])
 def get_robots_battery():
     battery_stats = {
         "robots": [
@@ -68,7 +68,7 @@ def get_robots_battery():
     return make_response(200, "OK", battery_stats)
 
 
-@app.route(VERSON_NO_ROUTE + '/user/robot/power/', methods=['PUT'])
+@app.route(VERSION_NO_ROUTE + '/user/robot/power/', methods=['PUT'])
 class control_robot_power():
     def put(self):
         return make_response(200, "OK")
