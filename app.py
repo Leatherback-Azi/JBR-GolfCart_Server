@@ -1,7 +1,5 @@
-import json
 import config
 from flask import Flask, send_file, request
-from flask_restx import Api, Resource
 
 app = Flask(__name__)
 VERSION_NO_ROUTE = config.Setup.version_no_route
